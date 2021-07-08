@@ -31,8 +31,9 @@ class Attribute
     #[ORM\OneToMany(targetEntity: Trend::class, mappedBy: "attribute")]
     private $trends;
 
-    public function __construct()
+    public function __construct(string $name)
     {
+        $this->name = $name;
         $this->trends = new ArrayCollection();
     }
 
