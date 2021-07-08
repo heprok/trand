@@ -123,12 +123,6 @@
     "laminas/laminas-code": {
         "version": "4.3.0"
     },
-    "laminas/laminas-eventmanager": {
-        "version": "3.3.1"
-    },
-    "laminas/laminas-zendframework-bridge": {
-        "version": "1.2.0"
-    },
     "nelmio/cors-bundle": {
         "version": "1.5",
         "recipe": {
@@ -170,6 +164,9 @@
     },
     "qipsius/tcpdf-bundle": {
         "version": "2.0.2"
+    },
+    "salamek/php-daterange": {
+        "version": "v1.0.1"
     },
     "symfony/asset": {
         "version": "v5.3.0"
