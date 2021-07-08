@@ -17,33 +17,7 @@ export default new Router({
           path: '',
           component: () => import('@/views/dashboard/Dashboard'),
         },
-        // Package
-        // {
-        //   name: 'Package',
-        //   path: 'package',
-        //   component: () => import('@/views/dashboard/pages/report/Package'),
-        // },
         // Manual
-        {
-          name: 'Список пород',
-          path: 'manual/species',
-          component: () => import('@/views/dashboard/pages/manual/Species'),
-        },        
-        {
-          name: 'Люди',
-          path: 'manual/people',
-          component: () => import('@/views/dashboard/pages/manual/People'),
-        },        
-        {
-          name: 'Рабочее расписание',
-          path: 'manual/workschedule',
-          component: () => import('@/views/dashboard/pages/manual/WorkSchedule'),
-        },  
-        {
-          name: 'Простои',
-          path: 'manual/downtime',
-          component: () => import('@/views/dashboard/pages/manual/Downtime'),
-        },        
         {
           name: 'Ошибки',
           path: 'manual/error',
@@ -54,17 +28,7 @@ export default new Router({
           path: 'manual/action',
           component: () => import('@/views/dashboard/pages/manual/Action'),
         },       
-        {
-          name: 'Стандартные длины',
-          path: 'manual/standartlength',
-          component: () => import('@/views/dashboard/pages/manual/StandartLength'),
-        },   
         //reports 
-        {
-          name: 'Простои ',
-          path: 'report/downtimes',
-          component: () => import('@/views/dashboard/pages/report/Downtime'),
-        },        
         {
           name: 'Аварии и сообщения',
           path: 'report/alert',

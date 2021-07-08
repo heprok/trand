@@ -29,22 +29,21 @@ export default {
   components: { ChartCard },
   data() {
     return {
-      loader: false,
       infoCards: [
-        {
-          nameCard: "Текущая смена",
-          color: "info",
-          subIcon: "mdi-tag",
-          icon: "mdi-account-hard-hat",
-          urlApi: "/infocard/currentShift",
-        },
-        {
-          nameCard: "Последний простой",
-          color: "orange",
-          icon: "mdi-clock-fast",
-          subIcon: "mdi-camera-timer",
-          urlApi: "/infocard/lastDowntime",
-        },
+        // {
+        //   nameCard: "Текущая смена",
+        //   color: "info",
+        //   subIcon: "mdi-tag",
+        //   icon: "mdi-account-hard-hat",
+        //   urlApi: "/infocard/currentShift",
+        // },
+        // {
+        //   nameCard: "Последний простой",
+        //   color: "orange",
+        //   icon: "mdi-clock-fast",
+        //   subIcon: "mdi-camera-timer",
+        //   urlApi: "/infocard/lastDowntime",
+        // },
         // {
         //   nameCard: "Кол-во карманов",
         //   subTitle: "ПФМ: Выгруженно карманов",

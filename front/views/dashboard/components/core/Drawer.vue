@@ -82,88 +82,11 @@ export default {
         title: "Панель",
         to: "/",
       },
-      // {
-      //   icon: "mdi-package-variant",
-      //   title: "Пакеты",
-      //   to: "/package",
-      // },
-      {
-        group: "/report",
-        title: "Отчёты",
-        icon: "mdi-file-chart",
-        children: [
-          {
-            icon: "mdi-color-helper",
-            title: "Пиломатериалы",
-            to: "board",
-          },
-          {
-            icon: "mdi-book-open",
-            title: "Хронология пил-мат",
-            to: "boardregistry",
-          },
-          {
-            icon: "mdi-chevron-double-down",
-            title: "Выгруженные карманы",
-            to: "unload",
-          },
-          {
-            icon: "mdi-account-multiple",
-            title: "Операторы",
-            to: "operators",
-          },
-          {
-            icon: "mdi-filter-remove-outline",
-            title: "Отбойник",
-            to: "lastpocket",
-          },
-          {
-            icon: "mdi-clock-fast",
-            title: "Простои",
-            to: "downtimes",
-          },
-          {
-            icon: "mdi-cards-variant",
-            title: "Остатки в карманах",
-            to: "balancepocket",
-          },
-          {
-            icon: "mdi-comment-alert-outline",
-            title: "Аварии и сообщения",
-            to: "alert",
-          },
-          {
-            icon: "mdi-gesture-double-tap",
-            title: "Действия",
-            to: "action",
-          },
-        ],
-      },
       {
         group: "/manual",
         title: "Справочники",
         icon: "mdi-book",
         children: [
-          {
-            icon: "mdi-pine-tree",
-            title: "Список пород",
-            to: "species",
-          },
-          {
-            icon: "mdi-account-group",
-            title: "Люди",
-            to: "people",
-          },
-          {
-            icon: "mdi-timetable",
-            title: "Рабочее расписание",
-            to: "workschedule",
-          },
-          {
-            icon: "mdi-camera-timer",
-            title: "Простои",
-            to: "downtime",
-          },
           {
             icon: "mdi-comment-remove-outline",
             title: "Ошибки",
@@ -173,11 +96,6 @@ export default {
             icon: "mdi-gesture-double-tap",
             title: "Действия оператора",
             to: "action",
-          },
-          {
-            icon: "mdi-format-line-spacing",
-            title: "Стандартные длины",
-            to: "standartlength",
           },
         ],
       },
