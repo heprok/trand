@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cdd3bfe68e6012c1a8c85748667b3e14",
+    "content-hash": "a47436e53f52abdc9a8d236083d0b374",
     "packages": [
         {
             "name": "api-platform/core",
@@ -4066,6 +4066,53 @@
             "time": "2021-06-30T08:27:49+00:00"
         },
         {
+            "name": "symfony/orm-pack",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/orm-pack.git",
+                "reference": "357f6362067b1ebb94af321b79f8939fc9118751"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/orm-pack/zipball/357f6362067b1ebb94af321b79f8939fc9118751",
+                "reference": "357f6362067b1ebb94af321b79f8939fc9118751",
+                "shasum": ""
+            },
+            "require": {
+                "composer/package-versions-deprecated": "*",
+                "doctrine/doctrine-bundle": "*",
+                "doctrine/doctrine-migrations-bundle": "*",
+                "doctrine/orm": "*",
+                "symfony/proxy-manager-bridge": "*"
+            },
+            "type": "symfony-pack",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A pack for the Doctrine ORM",
+            "support": {
+                "issues": "https://github.com/symfony/orm-pack/issues",
+                "source": "https://github.com/symfony/orm-pack/tree/v2.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-12-22T16:33:52+00:00"
+        },
+        {
             "name": "symfony/password-hasher",
             "version": "v5.3.3",
             "source": {
@@ -6637,16 +6684,10 @@
         {
             "name": "tlc/doctrineextensions",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:technolescom/DoctrineExtensions.git",
-                "reference": "50a0fd4990539742a235e95e69994170c173f0fa"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/technolescom/DoctrineExtensions/zipball/50a0fd4990539742a235e95e69994170c173f0fa",
-                "reference": "50a0fd4990539742a235e95e69994170c173f0fa",
-                "shasum": ""
+                "type": "path",
+                "url": "../library/php/DoctrineExtensions",
+                "reference": "3851fc4802f4800c0189628df24c3ef978ff4e95"
             },
             "require": {
                 "doctrine/orm": "^2.7",
@@ -6661,7 +6702,6 @@
                 "zf1/zend-date": "^1.12",
                 "zf1/zend-registry": "^1.12"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -6700,11 +6740,94 @@
                 "doctrine",
                 "orm"
             ],
-            "support": {
-                "source": "https://github.com/technolescom/DoctrineExtensions/tree/master",
-                "issues": "https://github.com/technolescom/DoctrineExtensions/issues"
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "tlc/manual-bundle",
+            "version": "0.1.0",
+            "dist": {
+                "type": "path",
+                "url": "../library/php/ManualBundle",
+                "reference": "66817d1dcfa5e060ee2946c400a963ebad635ea6"
             },
-            "time": "2021-06-24T13:42:30+00:00"
+            "require": {
+                "php": ">=7.4",
+                "symfony/orm-pack": "^2.1",
+                "tlc/report-bundle": "^0.1.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "symfony": {
+                    "allow-contrib": false,
+                    "require": "5.3.*"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tlc\\ManualBundle\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tlc\\ManualBundle\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "./vendor/bin/simple-phpunit"
+                ]
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "TechnoLesCom manual bundle",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "tlc/report-bundle",
+            "version": "0.1.0",
+            "dist": {
+                "type": "path",
+                "url": "../library/php/ReportBundle",
+                "reference": "38b71229afa835b6c97dbeff5bb6e970100c1a65"
+            },
+            "require": {
+                "php": ">=8.0",
+                "qipsius/tcpdf-bundle": "^2.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "symfony": {
+                    "allow-contrib": false,
+                    "require": "5.3.*"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tlc\\ReportBundle\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tlc\\ReportBundle\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "./vendor/bin/simple-phpunit"
+                ]
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "TechnoLesCom report bundle",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "twig/extra-bundle",
