@@ -49,9 +49,9 @@ class Trend
         return strtotime($this->drec->format(DATE_ATOM));
     }
 
-    public function getDrec(): string
+    public function getDrec(): DateTime
     {
-        return $this->drec->format(DATE_ATOM);
+        return $this->drec;
     }
 
     #[ORM\ManyToOne(targetEntity: Attribute::class)]
@@ -67,9 +67,9 @@ class Trend
     }
 
     #[Groups(["trend:read"])]
-    public function getStart(): ?string
+    public function getDrecFormat(string $format = BaseEntity::DATETIME_FOR_FRONT): ?string
     {
-        return $this->drec->format(BaseEntity::DATETIME_FOR_FRONT);
+        return $this->drec->format($format);
     }
 
     #[Groups(["trend:read"])]

@@ -13,7 +13,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class TrendFixtures extends Fixture implements DependentFixtureInterface
 {
-    const COUNT_TREND = 4000;
+    const COUNT_TREND = 30000;
 
     public function load(ObjectManager $manager)
     {

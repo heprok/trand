@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import ChartCard from "../../components/charts/ChartCard";
 import JournalTrend from '../../components/global/JournalTrend.vue';
 export default {
   name: "DashboardDashboard",
