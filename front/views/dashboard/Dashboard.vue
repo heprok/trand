@@ -19,14 +19,27 @@
         />
       </v-col>
     </v-row>
+    <v-row>
+      <v-col cols="12" lg="6" xl="8">
+        <JournalTrend
+        />
+      </v-col>
+      <v-col cols="12" lg="6" xl="4">
+        <JournalEvent />
+      </v-col>
+      <v-col cols="12" lg="6" xl="4">
+        <JournalEvent />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
 import ChartCard from "../../components/charts/ChartCard";
+import JournalTrend from '../../components/global/JournalTrend.vue';
 export default {
   name: "DashboardDashboard",
-  components: { ChartCard },
+  components: { JournalTrend },
   data() {
     return {
       infoCards: [
