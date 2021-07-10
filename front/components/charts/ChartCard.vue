@@ -20,6 +20,12 @@
         :chartdata="chartdata"
         :options="options"
       />
+      <LineChart
+        v-else-if="type === 'Line'"
+        :suffix="suffix"
+        :chartdata="chartdata"
+        :options="options"
+      />
     </template>
 
     <slot slot="reveal-actions" name="reveal-actions" />
@@ -46,9 +52,10 @@
 import Axios from "axios";
 import HBarChart from "./HBarChart";
 import BarChart from "./BarChart";
+import LineChart from "./LineChart";
 export default {
   name: "QualitiesBarChartCard",
-  components: { HBarChart, BarChart },
+  components: { HBarChart, BarChart, LineChart },
   data: () => ({
     loaded: false,
     options: null,

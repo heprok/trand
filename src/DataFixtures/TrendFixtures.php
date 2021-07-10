@@ -13,7 +13,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class TrendFixtures extends Fixture implements DependentFixtureInterface
 {
-    const COUNT_TREND = 10000;
+    const COUNT_TREND = 4000;
 
     public function load(ObjectManager $manager)
     {
@@ -28,7 +28,7 @@ class TrendFixtures extends Fixture implements DependentFixtureInterface
             $drec->setTimestamp($randomDatesTimestamp[$i]);
             
             $trend->setDrec($drec);
-            $trend->setValue(rand(0, 400));
+            $trend->setValue(rand(0, 100));
             $trend->setAttribute($arr_attribute[array_rand($arr_attribute)]);
             
             $manager->persist($trend);

@@ -10,7 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-    const startDate = '2021-07-01';
+    const startDate = '2021-07-09';
     const endDate =  '2021-07-11';
 
     public function load(ObjectManager $manager)
@@ -35,6 +35,8 @@ class AppFixtures extends Fixture
         return new DatePeriod(new DateTime(self::startDate), new DateInterval('P1D'), new DateTime(self::endDate));
     }
 
+    // static public function getRandomDatetime(int $countDateTime):array
+
     /**
      * Возращает уникальные рандоманые даты
      *
@@ -50,7 +52,7 @@ class AppFixtures extends Fixture
                 $randomDates[] = $date;
             }
         }
-
+        asort($randomDates);
         return $randomDates;
     }
 }
