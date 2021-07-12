@@ -32,14 +32,13 @@ const optionsNotification = {
   }
 }
 moment.tz.setDefault(store.state.timezone)
-
 Vue.use(Snotify, optionsNotification);
 
 Vue.prototype.$moment = moment
+Vue.prototype.$eventBus = new Vue();
 Vue.config.productionTip = false
 Vue.component('LoaderTlc', LoaderTlc);
 Vue.component('apexchart', VueApexCharts)
-
 new Vue({
   router,
   Snotify,

@@ -13,75 +13,108 @@
 <script>
 export default {
   name: "RealTimeLineChart",
-  data: () => ({
-    chartOptions: {
-      tooltip: {
-        theme: "dark",
-        x: {
-          format: "hh:mm:ss",
-        },
-      },
-      chart: {
-        id: "realtime",
-        height: 350,
-        type: "line",
-        animations: {
-          enabled: true,
-          easing: "linear",
-          dynamicAnimation: {
-            speed: 1000,
+  data() {
+    const self = this;
+    return {
+      series: [],
+      chartOptions: {
+        tooltip: {
+          x: {
+            format: "dd.MM.yy hh:mm:ss",
           },
         },
-        toolbar: {
-          show: false,
+        chart: {
+          id: "realtime",
+          height: 350,
+          type: "line",
+          animations: {
+            enabled: true,
+            easing: "linear",
+            dynamicAnimation: {
+              speed: 1000,
+            },
+          },
+          toolbar: {
+            show: true,
+            tools: {
+              customIcons: [
+                {
+                  icon: '<span class="mdi mdi-18px mdi-vector-polyline"></span>',
+                  index: 4,
+                  title: "Выбранные атрибуты",
+                  class: "custom-icon",
+                  click: () => {
+                    self.$emit("open-menu-attribute");
+                  },
+                },
+              ],
+            },
+          },
+          zoom: {
+            enabled: true,
+          },
         },
-        zoom: {
+        dataLabels: {
           enabled: false,
         },
+        stroke: {
+          curve: "smooth",
+        },
+        markers: {
+          size: 0,
+        },
+        xaxis: {
+          type: "datetime",
+        },
+        yaxis: {
+          max: 100,
+        },
+        noData: {
+          text: "Загрузка...",
+        },
+        legend: {
+          show: true,
+          position: "bottom",
+          horizontalAlign: "center",
+          onItemClick: {
+            toggleDataSeries: true,
+          },
+          onItemHover: {
+            highlightDataSeries: true,
+          },
+        },
       },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: "smooth",
-      },
-      title: {
-        text: "Dynamic Updating Chart",
-        align: "left",
-      },
-      markers: {
-        size: 0,
-      },
-      xaxis: {
-        type: "datetime",
-      },
-      yaxis: {
-        max: 100,
-      },
-      legend: {
-        show: false,
-      },
-    },
-  }),
-  props: {
-    series: {
-      type: Array,
-      default: () => [],
-    },
+    };
   },
+  props: {},
   methods: {
     appendData(appendData) {
       // data: [{x: 11, y: 22}]
       let append = [];
-      appendData.forEach(item => {
+      appendData.forEach((item) => {
         append.push({
-          data: item.data
-        })
+          data: item.data,
+        });
       });
       this.$refs.chart.appendData(append);
     },
     updateSeries(datasets) {
       this.$refs.chart.updateSeries(datasets);
+    },
+    changeTheme() {
+      const mode =
+        localStorage.getItem("dark_theme") === "true" ? "dark" : "light";
+      this.$refs.chart.updateOptions({
+        theme: {
+          mode: mode,
+        },
+        chart: {
+          foreColor: mode === "dark" ? "#f6f7f8" : "#373d3f",
+        },
+        tooltip: {
+          theme: mode,
+        },
+      });
     },
   },
   watch: {
@@ -104,7 +137,16 @@ export default {
     //   this.$refs.chart.appendData({data: newDataFromNewData}, false, true);
     // },
   },
-  mounted() {},
+  mounted() {
+    this.$eventBus.$on("change-theme", () => {
+      this.changeTheme();
+    });
+    this.changeTheme();
+  },
+  beforeDestroy() {
+    this.$refs.chart.destroy();
+    this.$eventBus.$off("change-theme");
+  },
   computed: {
     colorScale() {
       return this.$vuetify.theme.dark
@@ -117,3 +159,12 @@ export default {
   },
 };
 </script>
+
+<style lang="sass">
+.apexcharts-menu
+  background-color: #292929!important
+  border: 0px
+.apexcharts-tooltip
+  color: #999
+  background: rgba(30, 30, 30, 0.8)
+</style>

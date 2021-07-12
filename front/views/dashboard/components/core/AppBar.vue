@@ -12,7 +12,7 @@
     />
     <v-spacer />
 
-    <summary-stats-card/> 
+    <summary-stats-card />
     <v-switch
       v-model="$vuetify.theme.dark"
       @change="switchTheme"
@@ -27,7 +27,7 @@
 <script>
 // Components
 // import { VHover, VListItem } from "vuetify/lib";
-import SummaryStatsCard from "../../../../components/SummaryStatsCard"
+import SummaryStatsCard from "../../../../components/SummaryStatsCard";
 // Utilities
 import { mapState, mapMutations } from "vuex";
 
@@ -85,11 +85,15 @@ export default {
     ...mapState(["drawer"]),
   },
   mounted() {
-    this.$vuetify.theme.dark = localStorage.getItem("dark_theme") === 'true';
+    // console.log(localStorage.getItem("dark_theme"));
+  },
+  created() {
+    this.$vuetify.theme.dark = localStorage.getItem("dark_theme") === "true";
   },
   methods: {
-    switchTheme(){
+    switchTheme() {
       localStorage.setItem("dark_theme", this.$vuetify.theme.dark);
+      this.$eventBus.$emit("change-theme", this.$vuetify.theme.dark ? 'dark' : 'light');
     },
     ...mapMutations({
       setDrawer: "SET_DRAWER",

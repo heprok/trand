@@ -20,8 +20,32 @@
       </v-col>
     </v-row>
     <v-row>
+      <v-col cols="6" xs="6" lg="3">
+      <SparkCard nameChart="spark1" />
+      </v-col>
+      <v-col cols="6" xs="6" lg="3">
+      <SparkCard nameChart="spark2" />
+      </v-col>
+      <v-col cols="6" xs="6" lg="3">
+      <SparkCard nameChart="spark3" />
+      </v-col>
+      <v-col cols="6" xs="6" lg="3">
+      <SparkCard nameChart="spark4" />
+      </v-col>
+      <!-- <v-col cols="6" lg="3">
+      <SparkLineChart :nameChart="'spark2'" />
+      </v-col>
+      <v-col cols="6" lg="3">
+      <SparkLineChart :nameChart="'spark3'" />
+      </v-col>
+      <v-col cols="6" lg="3">
+      <SparkLineChart :nameChart="'spark4'" />
+      </v-col> -->
+    </v-row>
+    <v-row>
       <v-col cols="12" lg="6" xl="8">
         <JournalTrend
+          nameChart="AllAtrributesDashboard"
         />
       </v-col>
       <v-col cols="12" lg="6" xl="4">
@@ -36,9 +60,10 @@
 
 <script>
 import JournalTrend from '../../components/global/JournalTrend.vue';
+import SparkLineChart from '../../components/charts/SparkLineChart.vue'
 export default {
   name: "DashboardDashboard",
-  components: { JournalTrend },
+  components: { JournalTrend, SparkLineChart },
   data() {
     return {
       infoCards: [
