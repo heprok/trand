@@ -13,7 +13,6 @@
       :selected="attributes.selected"
       v-model="dialogAttribute"
     />
-    <slot slot="reveal-actions" name="reveal-actions" />
     <h4 class="card-title font-weight-light mt-2 ml-2">
       {{ title }}
     </h4>
@@ -21,8 +20,7 @@
     <p class="d-inline-flex font-weight-light ml-2 mt-1">
       {{ subtitle }}
     </p>
-    <template v-slot:actions>
-    </template>
+    <template v-slot:actions> </template>
   </base-material-card>
 </template>
 
@@ -36,7 +34,7 @@ export default {
     options: null,
     intervalUpdate: null,
     intervalRefresh: null,
-    lastUpdateDrec: null,
+    lastPeriod: null,
     dialogAttribute: false,
     attributes: {
       selected: [],
@@ -44,10 +42,6 @@ export default {
   }),
   computed: {},
   props: {
-    suffix: {
-      type: String,
-      default: "",
-    },
     secondUpdate: {
       type: Number,
       default: 1000 * 5, // 5 секунд
@@ -68,8 +62,17 @@ export default {
       type: Number,
       default: 30,
     },
+    period: {},
   },
-  watch: {},
+  watch: {
+    period: {
+      handler(val){
+        console.log(val, this.lastPeriod);
+        this.lastPeriod = val
+      },
+      deep: true,
+    }
+  },
   methods: {
     openMenuAttribute() {
       this.stopTimerUpdate();
@@ -83,9 +86,12 @@ export default {
         "chart_" + this.nameChart,
         JSON.stringify(this.attributes.selected)
       );
-      this.lastUpdateDrec = this.$moment()
-        .subtract(this.beforeFirstDatasetMinute, "minutes")
-        .format();
+      this.lastPeriod = this.period ?? {
+        start: this.$moment()
+          .subtract(this.beforeFirstDatasetMinute, "minutes")
+          .format(),
+        end: this.$moment().format(),
+      };
       await this.setup();
       this.startTimerUpdate();
       this.startTimerRefresh();
@@ -94,10 +100,14 @@ export default {
       let config = {
         params: {
           attribute: this.attributes.selected.map((attr) => attr.id),
-          "drec[after]": this.lastUpdateDrec,
-          "drec[before]": (this.lastUpdateDrec = this.$moment().format()),
+          "drec[after]": this.lastPeriod.start,
+          "drec[before]": this.lastPeriod.end ,
         },
       };
+      this.lastPeriod = {
+        start: this.lastPeriod.end,
+        end: this.$moment().format()
+      }
       return config;
     },
     stopTimerUpdate() {
@@ -109,9 +119,12 @@ export default {
     startTimerRefresh() {
       this.stopTimerRefresh();
       this.intervalRefresh = window.setInterval(() => {
-        this.lastUpdateDrec = this.$moment()
-          .subtract(this.beforeFirstDatasetMinute, "minutes")
-          .format();
+        this.lastPeriod = this.period ?? {
+          start: this.$moment()
+            .subtract(this.beforeFirstDatasetMinute, "minutes")
+            .format(),
+          end: this.$moment().format(),
+        };
         this.setup();
       }, this.beforeFirstDatasetMinute * 1000 * 60);
     },
@@ -123,10 +136,12 @@ export default {
     },
     async setup() {
       try {
+        console.log('setup pered', this.lastPeriod)
         const { data } = await Axios.get(
           "/api/trends/chartAttributes",
           this.paramsQuery()
         );
+        console.log('setup posle', this.lastPeriod)
         this.$refs.chart.updateSeries(
           data.length === 0 ? [{}] : Object.values(data)
         );
@@ -151,9 +166,12 @@ export default {
     this.stopTimerRefresh();
   },
   async mounted() {
-    this.lastUpdateDrec = this.$moment()
-      .subtract(this.beforeFirstDatasetMinute, "minutes")
-      .format();
+    this.lastPeriod = this.period ?? {
+      start: this.$moment()
+        .subtract(this.beforeFirstDatasetMinute, "minutes")
+        .format(),
+      end: this.$moment().format(),
+    };
     this.attributes.selected =
       JSON.parse(localStorage.getItem("chart_" + this.nameChart)) ?? [];
     this.startTimerUpdate();

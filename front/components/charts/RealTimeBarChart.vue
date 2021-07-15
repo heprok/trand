@@ -1,7 +1,7 @@
 <template>
   <div id="chart">
     <apexchart
-      type="line"
+      type="bar"
       height="350"
       ref="chart"
       :options="chartOptions"
@@ -12,21 +12,14 @@
 
 <script>
 export default {
-  name: "RealTimeLineChart",
+  name: "RealTimeBarChart",
   data() {
     const self = this;
     return {
       series: [],
       chartOptions: {
-        tooltip: {
-          x: {
-            format: "dd.MM.yy hh:mm:ss",
-          },
-        },
         chart: {
-          id: "realtime",
-          height: 350,
-          type: "line",
+          type: "bar",
           animations: {
             enabled: true,
             easing: "linear",
@@ -59,7 +52,6 @@ export default {
         },
         stroke: {
           curve: "smooth",
-          width: 2,
         },
         markers: {
           size: 0,

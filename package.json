@@ -34,13 +34,11 @@
         "apexcharts": "^3.27.2",
         "builder-query-vuetify": "file:../library/vue/builder-query-vuetify",
         "chartjs-plugin-datalabels": "^0.7.0",
-        "daterange-picker-vuetify": "file:../library/vue/daterange-picker-vuetify",
         "moment-timezone": "^0.5.32",
         "tlc-front-components": "^1.0.6",
+        "v-calendar": "^2.3.1",
         "vee-validate": "^3.4.0",
         "vue-apexcharts": "^1.6.1",
-        "vue-chartist": "^2.3.1",
-        "vue-qrcode-reader": "^2.3.18",
         "vue-snotify": "^3.2.1",
         "vuetify": "^2.3.13"
     }

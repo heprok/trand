@@ -15,7 +15,7 @@
           v-on="$listeners"
         >
           <template #footer>
-            <v-col cols="12" class="ml-2 mr-1fi">
+            <v-col cols="12" class="ml-2 mr-1">
               <SparkLineChart ref="chart" :nameChart="nameChart" />
             </v-col>
           </template>
@@ -53,7 +53,7 @@ export default {
     },
     intervalSecond: {
       type: Number,
-      default: 1000, // 1 секунда
+      default: 1000 * 20, // 1 секунда
     },
   },
   mounted() {
@@ -88,6 +88,7 @@ export default {
           };
         }),
       };
+      console.log(lastTrend, this.value);
       if (lastTrend.value != this.value || this.currentAttribute.id == lastTrend.attribute.id ) this.$refs.chart.updateSeries([series]);
       this.color = "info";
       this.value = lastTrend.value;
