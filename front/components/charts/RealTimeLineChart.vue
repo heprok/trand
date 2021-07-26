@@ -40,11 +40,20 @@ export default {
               customIcons: [
                 {
                   icon: '<span class="mdi mdi-18px mdi-vector-polyline"></span>',
-                  index: 4,
+                  index: 0,
                   title: "Выбранные атрибуты",
                   class: "custom-icon",
                   click: () => {
                     self.$emit("open-menu-attribute");
+                  },
+                },
+                {
+                  icon: '<span class="mdi mdi-18px mdi-fullscreen"></span>',
+                  index: 7,
+                  title: "Открыть в в отдельно окне",
+                  class: "custom-icon",
+                  click: () => {
+                    self.$emit("open-page-full-journal");
                   },
                 },
               ],
@@ -66,6 +75,9 @@ export default {
         },
         xaxis: {
           type: "datetime",
+          labels: {
+            datetimeUTC: false,
+          }
         },
         yaxis: {
           max: 100,

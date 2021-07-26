@@ -53,7 +53,7 @@ export default {
     },
     intervalSecond: {
       type: Number,
-      default: 1000 * 20, // 1 секунда
+      default: 1000 * 1, // 1 секунда
     },
   },
   mounted() {
@@ -88,7 +88,6 @@ export default {
           };
         }),
       };
-      console.log(lastTrend, this.value);
       if (lastTrend.value != this.value || this.currentAttribute.id == lastTrend.attribute.id ) this.$refs.chart.updateSeries([series]);
       this.color = "info";
       this.value = lastTrend.value;

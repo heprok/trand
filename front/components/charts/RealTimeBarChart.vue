@@ -58,10 +58,13 @@ export default {
         },
         xaxis: {
           type: "datetime",
+          labels: {
+            datetimeUTC: false,
+          }
         },
         yaxis: {
           max: 100,
-        },
+        },        
         noData: {
           text: "Загрузка...",
         },

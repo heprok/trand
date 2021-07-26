@@ -6,7 +6,11 @@
     v-on="$listeners"
   >
     <template v-slot:heading>
-      <RealTimeLineChart @open-menu-attribute="openMenuAttribute" ref="chart" />
+      <RealTimeLineChart
+        @open-page-full-journal="openFullPageJournal"
+        @open-menu-attribute="openMenuAttribute"
+        ref="chart"
+      />
     </template>
     <DialogAttributes
       @change="saveDialogAttribute"
@@ -66,14 +70,18 @@ export default {
   },
   watch: {
     period: {
-      handler(val){
+      handler(val) {
         console.log(val, this.lastPeriod);
-        this.lastPeriod = val
+        this.lastPeriod = val;
       },
       deep: true,
-    }
+    },
   },
   methods: {
+    openFullPageJournal() {
+      document.location.href =
+        document.location.origin + "/#/journal?nameChart=" + this.nameChart;
+    },
     openMenuAttribute() {
       this.stopTimerUpdate();
       this.stopTimerRefresh();
@@ -101,13 +109,13 @@ export default {
         params: {
           attribute: this.attributes.selected.map((attr) => attr.id),
           "drec[after]": this.lastPeriod.start,
-          "drec[before]": this.lastPeriod.end ,
+          "drec[before]": this.lastPeriod.end,
         },
       };
       this.lastPeriod = {
         start: this.lastPeriod.end,
-        end: this.$moment().format()
-      }
+        end: this.$moment().format(),
+      };
       return config;
     },
     stopTimerUpdate() {
@@ -136,12 +144,10 @@ export default {
     },
     async setup() {
       try {
-        console.log('setup pered', this.lastPeriod)
         const { data } = await Axios.get(
           "/api/trends/chartAttributes",
           this.paramsQuery()
         );
-        console.log('setup posle', this.lastPeriod)
         this.$refs.chart.updateSeries(
           data.length === 0 ? [{}] : Object.values(data)
         );

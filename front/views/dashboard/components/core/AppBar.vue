@@ -12,7 +12,7 @@
     />
     <v-spacer />
 
-    <summary-stats-card />
+    <!-- <summary-stats-card />f -->
     <v-switch
       v-model="$vuetify.theme.dark"
       @change="switchTheme"

@@ -8,12 +8,15 @@
         ><v-checkbox v-model="isNow" label="По настоящее время" />
       </v-col>
     </v-row>
-    <v-row>
-      <v-col>
-        <v-text-field v-model="datesText" readonly />
+    <v-row class="d-flex align-stretch">
+      <v-col cols="12">
+        <JournalTrend
+          ref="journalTrend"
+          :nameChart="getNameChart"
+          :period="dates"
+        />
       </v-col>
     </v-row>
-    <JournalTrend ref="journalTrend" nameChart="PageChart" :period="dates" />
   </div>
 </template>
 
@@ -47,6 +50,11 @@ export default {
     },
   },
   computed: {
+    getNameChart() {
+      const urlSearchParams = new URLSearchParams(window.location.hash);
+      const params = Object.fromEntries(urlSearchParams.entries());
+      return Object.values(params)[0];
+    },
     datesText() {
       return (
         this.$moment(this.dates.start).format("DD.MM.YYYY HH:mm") +
