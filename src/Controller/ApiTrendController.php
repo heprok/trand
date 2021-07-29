@@ -26,7 +26,7 @@ class ApiTrendController extends AbstractController
         $dates = $request->query->get('drec');
         $attributes = (array)$request->query->get('attribute');
         $period = BaseEntity::getPeriodFrom2DateString($dates['after'], $dates['before']);
-
+        
         $trends = $this->trendRepository->findByAttribute($period, $attributes);
 
         $attributes = $this->attributeRepository->findBy(['id' => $attributes]);

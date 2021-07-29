@@ -1,7 +1,7 @@
 <template>
   <div id="chart">
     <apexchart
-      type="line"
+      type="bar"
       height="350"
       ref="chart"
       :options="chartOptions"
@@ -12,21 +12,14 @@
 
 <script>
 export default {
-  name: "RealTimeLineChart",
+  name: "RealTimeBarChart",
   data() {
     const self = this;
     return {
       series: [],
       chartOptions: {
-        tooltip: {
-          x: {
-            format: "dd.MM.yy hh:mm:ss",
-          },
-        },
         chart: {
-          id: "realtime",
-          height: 350,
-          type: "line",
+          type: "bar",
           animations: {
             enabled: true,
             easing: "linear",
@@ -40,20 +33,11 @@ export default {
               customIcons: [
                 {
                   icon: '<span class="mdi mdi-18px mdi-vector-polyline"></span>',
-                  index: 0,
+                  index: 4,
                   title: "Выбранные атрибуты",
                   class: "custom-icon",
                   click: () => {
                     self.$emit("open-menu-attribute");
-                  },
-                },
-                {
-                  icon: '<span class="mdi mdi-18px mdi-fullscreen"></span>',
-                  index: 7,
-                  title: "Открыть в в отдельно окне",
-                  class: "custom-icon",
-                  click: () => {
-                    self.$emit("open-page-full-journal");
                   },
                 },
               ],
@@ -68,7 +52,6 @@ export default {
         },
         stroke: {
           curve: "smooth",
-          width: 2,
         },
         markers: {
           size: 0,
@@ -81,7 +64,7 @@ export default {
         },
         yaxis: {
           max: 100,
-        },
+        },        
         noData: {
           text: "Загрузка...",
         },

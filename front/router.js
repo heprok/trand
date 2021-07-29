@@ -17,6 +17,11 @@ export default new Router({
           path: '',
           component: () => import('@/views/dashboard/Dashboard'),
         },
+        {
+          name: 'Журанл трендов',
+          path: 'journal',
+          component: () => import('@/views/dashboard/pages/JournalTrend'),
+        },
         // Manual
         {
           name: 'Ошибки',

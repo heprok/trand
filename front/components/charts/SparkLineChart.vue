@@ -45,6 +45,9 @@ export default {
         },
         xaxis: {
           type: "datetime",
+          labels: {
+            datetimeUTC: false,
+          }
         },
         colors: ["#03a9f4"],
         tooltip: {

@@ -15,7 +15,7 @@
           v-on="$listeners"
         >
           <template #footer>
-            <v-col cols="12" class="ml-2 mr-1fi">
+            <v-col cols="12" class="ml-2 mr-1">
               <SparkLineChart ref="chart" :nameChart="nameChart" />
             </v-col>
           </template>
@@ -53,7 +53,7 @@ export default {
     },
     intervalSecond: {
       type: Number,
-      default: 1000, // 1 секунда
+      default: 1000 * 1, // 1 секунда
     },
   },
   mounted() {
